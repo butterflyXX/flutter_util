@@ -15,13 +15,12 @@ class PageFloatWidget extends StatelessWidget {
           Container(
             height: double.infinity,
             child: Image.network(
-              "https://img2.baidu.com/it/u=3853345508,384760633&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=1200",
+              "https://t7.baidu.com/it/u=2749005241,3756993511&fm=193&f=GIF",
               fit: BoxFit.cover,
             ),
           ),
           DragWidget(
             padding: const EdgeInsets.all(20),
-            initOffset: const Offset(10, 50),
             child: FloatingActionButton(
               onPressed: () {
                 debugPrint("悬浮按钮点击");

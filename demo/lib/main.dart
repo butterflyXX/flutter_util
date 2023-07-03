@@ -1,5 +1,7 @@
 import 'package:demo/float_button/global_float_widget.dart';
 import 'package:demo/float_button/page_float_widget.dart';
+import 'package:demo/loading/global_loading.dart';
+import 'package:demo/mask_widget/masking.dart';
 import 'package:flutter/material.dart';
 
 import 'common/common_button.dart';
@@ -41,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       // 图片预加载
-      precacheImage(const NetworkImage("https://img2.baidu.com/it/u=3853345508,384760633&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=1200"), context);
+      precacheImage(const NetworkImage("https://t7.baidu.com/it/u=2749005241,3756993511&fm=193&f=GIF"), context);
     });
   }
 
@@ -55,6 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           const GlobalFloatWidget(),
           pageFloatWidget(),
+          const GlobalLoadingWidget(),
+          const MaskTestWidget(),
         ],
       ),
     );

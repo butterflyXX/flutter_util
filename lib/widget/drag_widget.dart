@@ -29,6 +29,9 @@ class _DragButtonState extends State<DragWidget> {
     // TODO: implement initState
     super.initState();
     offset = ValueNotifier(widget.initOffset);
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      offSetResetIfNeed();
+    });
   }
 
   var duration = Duration.zero;
@@ -75,35 +78,38 @@ class _DragButtonState extends State<DragWidget> {
   endDrag() {
     if (offsetToZero != null) {
       offsetToZero = null;
-      final selfSize = _selfKey.currentContext?.size;
-      final childSize = _childKey.currentContext?.size;
-      if (selfSize != null && childSize != null) {
-        final padding = widget.padding;
-        final left = padding.left;
-        final top = padding.top;
-        final right = padding.right;
-        final bottom = padding.bottom;
-        double x = offset.value.dx;
-        double y = offset.value.dy;
+      offSetResetIfNeed();
+    }
+  }
+  offSetResetIfNeed() {
+    final selfSize = _selfKey.currentContext?.size;
+    final childSize = _childKey.currentContext?.size;
+    if (selfSize != null && childSize != null) {
+      final padding = widget.padding;
+      final left = padding.left;
+      final top = padding.top;
+      final right = padding.right;
+      final bottom = padding.bottom;
+      double x = offset.value.dx;
+      double y = offset.value.dy;
 
-        if (offset.value.dx < left) {
-          x = left;
-        } else if (offset.value.dx > selfSize.width - childSize.width - right) {
-          x = selfSize.width - childSize.width - right;
-        }
-        if (offset.value.dy < top) {
-          y = top;
-        } else if (offset.value.dy > selfSize.height - childSize.height - bottom) {
-          y = selfSize.height - childSize.height - bottom;
-        }
+      if (offset.value.dx < left) {
+        x = left;
+      } else if (offset.value.dx > selfSize.width - childSize.width - right) {
+        x = selfSize.width - childSize.width - right;
+      }
+      if (offset.value.dy < top) {
+        y = top;
+      } else if (offset.value.dy > selfSize.height - childSize.height - bottom) {
+        y = selfSize.height - childSize.height - bottom;
+      }
 
-        final newOffset = Offset(x, y);
-        if (offset.value != newOffset) {
-          if (duration != (widget.animationDuration??_defAnimationDuration)) {
-            duration = widget.animationDuration??_defAnimationDuration;
-          }
-          offset.value = newOffset;
+      final newOffset = Offset(x, y);
+      if (offset.value != newOffset) {
+        if (duration != (widget.animationDuration??_defAnimationDuration)) {
+          duration = widget.animationDuration??_defAnimationDuration;
         }
+        offset.value = newOffset;
       }
     }
   }
