@@ -1,3 +1,7 @@
+## 0.0.4
+
+* feature: uri路由跳转方案
+
 ## 0.0.3
 
 * feature: 添加loading组件,引导蒙层组件
