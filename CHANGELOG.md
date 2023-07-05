@@ -1,3 +1,7 @@
+## 0.0.6
+
+* feature: 优化loading能力,添加app进入前台后处理工作能力util
+
 ## 0.0.5
 
 * feature: 数据转化工具

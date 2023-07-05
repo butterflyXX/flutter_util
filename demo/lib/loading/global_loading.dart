@@ -27,12 +27,7 @@ class _GlobalLoadingWidgetState extends State<GlobalLoadingWidget> with EntryAbl
 
   @override
   void show() {
-    entry ??= FloatUtil.addFloatWidget(context,
-        child: const LoadingWidget(
-          // msg: "loading...",
-          contentColor: Colors.green,
-          behavior: HitTestBehavior.opaque,
-        ));
+    entry ??= LoadingUtil.show(context);
     Future.delayed(const Duration(seconds: 2)).then((value) => hidden());
   }
 }
