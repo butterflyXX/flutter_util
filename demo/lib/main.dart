@@ -1,9 +1,8 @@
-import 'dart:convert';
-
 import 'package:demo/float_button/global_float_widget.dart';
 import 'package:demo/float_button/page_float_widget.dart';
 import 'package:demo/loading/global_loading.dart';
 import 'package:demo/mask_widget/masking.dart';
+import 'package:demo/paint_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_util/util/life_cycle/life_cycle_notif.dart';
 import 'package:flutter_util/util/navigator/navigator_util.dart';
@@ -69,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
           const MaskTestWidget(),
           pageRouteWidget(),
           testReOpenAppDoWork(),
+          testPaint(),
         ],
       ),
     );
@@ -127,6 +127,19 @@ class _MyHomePageState extends State<MyHomePage> {
               final entry = LoadingUtil.show(context);
               Future.delayed(const Duration(seconds: 2)).then((value) => LoadingUtil.hidden(entry));
             });
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget testPaint() {
+    return Row(
+      children: [
+        CommonButton(
+          title: "测试画笔",
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_)=>PaintWidget()));
           },
         ),
       ],
